@@ -1,24 +1,23 @@
-import { InlineCode } from "@/once-ui/components";
-
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Damian",
+  lastName: "Emerah",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  role: "Web Developer",
+  avatar: "/images/projects/project-01/avatar-01.jpg",
+  location: "Africa/Lagos",
+  languages: ["English"],
 };
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to Damian's Dev & AI Newsletter</>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      I share deep dives into Next.js performance tuning, SEO best practices,
+      practical React and Tailwind CSS tips, plus hands‑on AI and ML
+      integrations to elevate your web applications with intelligent features.
     </>
   ),
 };
@@ -27,24 +26,29 @@ const social = [
   // Links are automatically displayed.
   // Import new icons in /once-ui/icons.ts
   {
-    name: "GitHub",
-    icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
-  },
-  {
-    name: "LinkedIn",
-    icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-  },
-  {
-    name: "X",
-    icon: "x",
-    link: "",
+    name: "WhatsApp",
+    icon: "whatsapp",
+    link: "https://wa.me/+2347066765698",
   },
   {
     name: "Email",
     icon: "email",
-    link: "mailto:example@gmail.com",
+    link: "mailto:damianemerah@gmail.com",
+  },
+  {
+    name: "GitHub",
+    icon: "github",
+    link: "https://github.com/damianemerah/",
+  },
+  {
+    name: "LinkedIn",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/damianemerah/",
+  },
+  {
+    name: "X",
+    icon: "x",
+    link: "https://x.com/damian_emerah",
   },
 ];
 
@@ -52,19 +56,21 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Design engineer and builder</>,
+  headline: <>Web developer</>,
   subline: (
     <>
-      I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I’m Damian, a web developer based in Lagos. I build intuitive
+      <br />
+      user experiences by day — and by night, I bring personal ideas to life
+      through code.
     </>
   ),
 };
 
 const about = {
   label: "About",
-  title: "About me",
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  title: "About Me",
+  description: `Meet Damian Emerah, Web Developer from Lagos, Nigeria`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -74,59 +80,70 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://cal.com/damianemerah",
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Damian is a Lagos‑based web developer with a strong foundation in
+        industrial mathematics and statistics, and a passion for transforming
+        design into high‑performance, SEO‑optimized, and responsive web
+        applications. He excels at converting Figma mocks into production‑ready
+        code using Next.js, React, and Tailwind CSS, while leveraging AWS and
+        CI/CD pipelines to streamline deployments and reduce costs.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Self‑Employed",
+        timeframe: "2022 – Present",
+        role: "Freelance Web Developer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Co‑developed Acc‑gen, a full‑stack SMS verification and social media
+            growth app using TypeScript, Next.js, and Supabase; built a support
+            system that improved user retention and engagement.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Built Glow, a beauty & wellness booking and e‑commerce platform with
+            Next.js, PostgreSQL, and Paystack, boosting client retention by 40%
+            and revenue by 20% through intuitive UX and streamlined checkout.
+          </>,
+          <>
+            Developed Dekato Store, a modern e‑commerce solution using Next.js,
+            MongoDB, Paystack, AWS SES, and Vercel; implemented SEO
+            optimizations and responsive UI to drive traffic and conversions.
+          </>,
+          <>
+            Created Grind Protocol with Next.js and Firebase, enhancing
+            performance and increasing user engagement by 40%.
+          </>,
+          <>
+            Reduced delivery times by 20% via GitHub Actions CI/CD; cut AWS
+            costs by 15% through optimized SES and S3 usage.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Astren (Remote)",
+        timeframe: "2023 – 2024",
+        role: "Software Engineer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Contributed to scalable back‑end and front‑end solutions, improving
+            system efficiency by 80% across services.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Collaborated under NDA to deliver high‑impact features in a
+            fast‑paced environment, adhering to best practices in testing and
+            deployment.
           </>,
         ],
         images: [],
@@ -134,54 +151,56 @@ const about = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education & Training",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Enugu State University of Science and Technology",
+        description: (
+          <>BSc in Industrial Mathematics & Statistics (2016 – 2020)</>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "ALX Software Engineering Program",
+        description: <>Full‑stack development intensive (2022 – 2023)</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Frontend Development",
+        description: (
+          <>
+            Expert in JavaScript, TypeScript, React.js, and Next.js for building
+            SSR/SSG web apps; skilled in Tailwind CSS and responsive design for
+            pixel‑perfect UIs.
+          </>
+        ),
+        images: [],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Backend & Databases",
+        description: (
+          <>
+            Proficient with Node.js, Express.js, Python, RESTful APIs;
+            experienced in MongoDB, MySQL, Supabase, Firebase, Prisma, and
+            GraphQL for robust data layering.
+          </>
+        ),
+        images: [],
+      },
+      {
+        title: "Cloud & DevOps",
+        description: (
+          <>
+            Hands‑on with AWS (SES, S3), Vercel deployments, Git/GitHub CI/CD
+            pipelines, and Paystack integration for secure payments.
+          </>
+        ),
+        images: [],
       },
     ],
   },
@@ -189,18 +208,14 @@ const about = {
 
 const blog = {
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  title: "Insights on Web Development & AI",
+  description: `Dive into Damian Emerah’s latest posts on Next.js performance, SEO strategies, React & Tailwind patterns, and practical AI integrations.`,
 };
 
 const work = {
   label: "Work",
-  title: "My projects",
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  title: "Featured Projects",
+  description: `Explore Damian Emerah’s portfolio of web apps—from high‑performance e‑commerce platforms to AI‑powered tools, all built with modern stacks.`,
 };
 
 const gallery = {
@@ -210,72 +225,72 @@ const gallery = {
   // Images from https://pexels.com
   images: [
     {
-      src: "/images/gallery/img-01.jpg",
+      src: "/images/gallery/img-01.jpeg",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/img-02.jpg",
+      src: "/images/gallery/img-02.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-03.jpg",
+      src: "/images/gallery/img-03.png",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/img-04.jpg",
+      src: "/images/gallery/img-04.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-05.jpg",
+      src: "/images/gallery/img-05.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-06.jpg",
+      src: "/images/gallery/img-06.jpeg",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/img-07.jpg",
+      src: "/images/gallery/img-07.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-08.jpg",
+      src: "/images/gallery/img-08.jpeg",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/img-09.jpg",
+      src: "/images/gallery/img-09.png",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-10.jpg",
+      src: "/images/gallery/img-10.jpeg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-11.jpg",
+      src: "/images/gallery/img-11.jpeg",
       alt: "image",
       orientation: "vertical",
     },
     {
-      src: "/images/gallery/img-12.jpg",
+      src: "/images/gallery/img-12.jpeg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-13.jpg",
+      src: "/images/gallery/img-13.jpeg",
       alt: "image",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/img-14.jpg",
+      src: "/images/gallery/img-14.jpeg",
       alt: "image",
       orientation: "horizontal",
     },

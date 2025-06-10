@@ -1,6 +1,68 @@
 ---
-title: "Simple portfolio creator built with Once UI and Next.js"
-publishedAt: "2024-04-08"
+title: "Case Study: Developing Glow by Ugosylvia - A Beauty E‑commerce and Service Booking Platform"
+publishedAt: "2025-05-20"
+summary: "This case study outlines the development of ‘Glow by Ugosylvia,’ a comprehensive platform for beauty products and services. It details the contributions of a mid‑level fullstack developer in building the e‑commerce storefront, appointment booking system, and admin dashboard with analytics and messaging using Next.js, Supabase, and modern web technologies."
 images:
-  - "/images/projects/project-01/video-01.mp4"
+  - "/images/projects/project-01/image-08.png"
+  - "/images/projects/project-01/image-09.png"
+  - "/images/projects/project-01/image-10.png"
+  - "/images/projects/project-01/image-11.png"
+  - "/images/projects/project-01/image-12.png"
+team:
+  - name: "Damian Emerah"
+    role: "Software Engineer"
+    avatar: "/images/projects/project-01/avatar-01.jpg"
+    linkedIn: "[https://www.linkedin.com/company/once-ui/](https://www.linkedin.com/company/once-ui/)"
+link: "https://ugosylviacosmetics.co.za/"
 ---
+
+## Overview
+
+‘Glow by Ugosylvia’ is a sophisticated web platform designed for a beauty and cosmetics brand, offering both e‑commerce capabilities for product sales and an integrated system for booking beauty services. The project aimed to provide a seamless user experience for customers and robust management tools for the business. I single‑handedly built the entire platform as a solo fullstack developer.
+
+## Key Features
+
+- **E‑commerce Storefront**: Developed the customer‑facing shop with product browsing by category, detailed product pages, shopping cart, secure checkout, user accounts, order history, and wishlists.
+- **Service Booking System**: Built functionality for clients to book signature beauty services (e.g., Microblading, Ombre Brows), view service details, and manage appointments via a user dashboard.
+- **Comprehensive Admin Dashboard**: Created a backend panel featuring:
+
+  - **Analytics**: Visualized metrics like total revenue, appointments, new clients, and revenue breakdowns using Recharts.
+  - **Product & Category Management**: Full CRUD operations for products and categories.
+  - **Order Management**: Tracking and fulfillment of product orders.
+  - **Appointment Management**: Scheduling and managing client service bookings.
+  - **Client Management**: Maintaining a customer database.
+  - **Messaging System**: Direct email communication with clients using Tiptap‑based editor and Resend integration.
+
+- **User Authentication & Authorization**: Implemented secure registration, login, and session management for both customers and administrators using Supabase Auth.
+- **Payment Integration**: Integrated Paystack to handle online payments for products and service deposits.
+- **UI/UX & PWA Enablement**: Crafted a responsive, mobile‑first interface using Next.js (v15), React (v19), TypeScript, Tailwind CSS (v4), Radix UI components, and enabled PWA capabilities with `next-pwa`. Implemented dark/light mode using `next-themes`.
+- **Loyalty Program**: Developed loyalty logic allowing users to earn and redeem rewards through platform activity.
+
+## Technologies Used
+
+- **Next.js (v15)**: React framework for SSR, SSG, and API routes.
+- **React (v19) & TypeScript**: Core frontend libraries for component development and type safety.
+- **Tailwind CSS (v4) & Radix UI**: Utility‑first CSS and component library for consistent styling.
+- **Zustand**: State management for client‑side data.
+- **React Hook Form & Zod**: Form handling and schema‑based validation.
+- **Supabase**: PostgreSQL database, authentication, and real‑time features.
+- **Paystack**: Payment gateway for secure Naira transactions.
+- **Resend**: Email service for transactional messaging.
+- **Tiptap**: Rich text editor used in admin messaging and content management.
+- **Embla Carousel**: Responsive carousels for product and service showcases.
+- **Recharts**: Data visualization library for admin analytics dashboards.
+- **next-pwa**: PWA support to enable offline access and installable web app.
+- **Utilities**: `date-fns`, `slugify`, `sharp` for image processing.
+- **Version Control**: Git.
+
+## Challenges and Learnings
+
+- **Integrating Diverse Functionalities**: Combining e‑commerce, service booking, loyalty program, and an extensive admin panel into a cohesive platform required careful data modeling and architecture planning.
+- **Feature-Rich Admin Panel**: Building an admin dashboard with detailed analytics, multiple management modules (products, orders, appointments, clients), and a messaging system enhanced my skills in backend design and complex UI workflows.
+- **Responsive and PWA Design**: Ensuring seamless experience across desktop and mobile, while implementing offline capabilities through PWA, demanded rigorous testing and optimization.
+- **Third‑Party Service Integrations**: Coordinating Paystack, Resend, and Supabase, while maintaining security and reliability, taught me effective API error handling and secure token management.
+- **Real‑time Data Considerations**: Leveraging Supabase’s real‑time features for appointment availability and order status updates required careful synchronization to prevent data conflicts.
+
+## Outcome
+
+The ‘Glow by Ugosylvia’ platform launched successfully, providing a modern, robust online presence that seamlessly integrates product sales and service bookings. The application empowers the business with efficient management tools and offers customers an engaging, convenient experience. My contributions as a mid‑level fullstack developer were critical in delivering a feature-complete, polished application, further advancing my expertise in building complex, real‑world web solutions for the beauty and retail industry.

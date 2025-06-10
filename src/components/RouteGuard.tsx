@@ -3,11 +3,19 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/app/resources";
-import { Flex, Spinner, Input, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
+import {
+  Flex,
+  Spinner,
+  Input,
+  Button,
+  Heading,
+  Column,
+  PasswordInput,
+} from "@/once-ui/components";
 import NotFound from "@/app/not-found";
 
 interface RouteGuardProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
@@ -85,28 +93,28 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   }
 
   if (!isRouteEnabled) {
-		return <NotFound />;
-	}
-
-  if (isPasswordRequired && !isAuthenticated) {
-    return (
-      <Column paddingY="128" maxWidth={24} gap="24" center>
-        <Heading align="center" wrap="balance">
-          This page is password protected
-        </Heading>
-        <Column fillWidth gap="8" horizontal="center">
-          <PasswordInput
-            id="password"
-            label="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            errorMessage={error}
-          />
-          <Button onClick={handlePasswordSubmit}>Submit</Button>
-        </Column>
-      </Column>
-    );
+    return <NotFound />;
   }
+
+  // if (isPasswordRequired && !isAuthenticated) {
+  //   return (
+  //     <Column paddingY="128" maxWidth={24} gap="24" center>
+  //       <Heading align="center" wrap="balance">
+  //         This page is password protected
+  //       </Heading>
+  //       <Column fillWidth gap="8" horizontal="center">
+  //         <PasswordInput
+  //           id="password"
+  //           label="Password"
+  //           value={password}
+  //           onChange={(e) => setPassword(e.target.value)}
+  //           errorMessage={error}
+  //         />
+  //         <Button onClick={handlePasswordSubmit}>Submit</Button>
+  //       </Column>
+  //     </Column>
+  //   );
+  // }
 
   return <>{children}</>;
 };

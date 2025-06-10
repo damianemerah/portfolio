@@ -1,44 +1,64 @@
 ---
-title: "Automating Design Handovers with a Figma to Code Pipeline"
-publishedAt: "2024-04-01"
-summary: "Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think."
+title: "Case Study: Developing DEKATO, a Feature-Rich E-commerce Platform"
+publishedAt: "2025-02-27"
+summary: "This case study details the development of DEKATO, a comprehensive e-commerce platform for fashion, built by a team of two. It highlights the role of a mid-level fullstack developer in creating both the customer-facing storefront and the extensive admin backend, utilizing Next.js, MongoDB, and various modern web technologies."
 images:
-  - "/images/projects/project-01/cover-02.jpg"
-  - "/images/projects/project-01/image-03.jpg"
+  - "/images/projects/project-01/image-04.png"
+  - "/images/projects/project-01/image-05.png"
+  - "/images/projects/project-01/image-06.png"
+  - "/images/projects/project-01/image-07.png"
 team:
-  - name: "John Doe"
+  - name: "Damian Emerah"
     role: "Software Engineer"
-    avatar: "/images/avatar.jpg"
+    avatar: "/images/projects/project-01/avatar-01.jpg"
     linkedIn: "https://www.linkedin.com/company/once-ui/"
-link: "https://once-ui.com/"
+  - name: "Cosmas Emerah"
+    role: "Software Engineer"
+    avatar: "/images/projects/project-01/avatar-02.jpg"
+    linkedIn: "https://www.linkedin.com/company/once-ui/"
+link: "https://www.dekato.ng/"
 ---
 
 ## Overview
 
-In this project, I focused on automating the often tedious design handover process. The goal was to create a pipeline that converts Figma designs directly into clean, production-ready code. By integrating design tokens, component libraries, and automated workflows, this solution significantly reduced the time spent on translating design assets into code, while maintaining design consistency across the product.
+DEKATO is a sophisticated e-commerce platform built to provide a premium online shopping experience for fashion enthusiasts. The project involved creating a user-friendly storefront for customers and a powerful admin dashboard for managing products, orders, customers, and content. This complex application was developed by a collaborative team of two fullstack developers, where I served as a mid‑level fullstack developer and the project manager.
 
 ## Key Features
 
-- **Figma Plugin Integration**: Developed a custom Figma plugin that extracts design tokens such as colors, typography, and spacing values, and exports them in a format compatible with our codebase.
-- **Code Generation**: Integrated an automated process that translates Figma components into React code using a combination of design tokens and pre-built component templates. This allowed developers to focus more on logic and less on repetitive UI coding.
-- **Continuous Sync**: Established a CI/CD pipeline that continuously synchronizes design changes from Figma to the codebase, ensuring design updates are reflected instantly without manual intervention.
-- **Scalable Design System**: Leveraged a design system that remains the single source of truth for both designers and developers, making it easy to maintain consistency even as the product evolves.
+- **Storefront Development**: Developed user‑facing features including product listing pages with advanced filtering and sorting, detailed product views, a multi‑step shopping cart and checkout process, user account dashboards, and homepage elements that showcase promotions and new arrivals.
+- **Admin Panel Implementation**: Built a comprehensive admin backend for managing the entire e-commerce operation. This included modules for product management (CRUD operations, inventory tracking, variants, collections, categories), order processing and fulfillment (status updates, tracking), customer management, and content management (blog posts via a rich text editor).
+- **Database Design & API Development**: Designed MongoDB schemas using Mongoose and created RESTful API endpoints with Next.js server actions and API routes to support all platform functionalities, ensuring efficient data handling and seamless communication between frontend and backend.
+- **Authentication & Authorization**: Implemented secure user authentication for both customers and administrators using NextAuth.js, with role‑based access control to restrict admin features to authorized users.
+- **Third‑Party Integrations**: Integrated Paystack for payment processing, AWS S3 for image and asset storage, and AWS SES for sending transactional emails (order confirmations, shipping notifications).
+- **Inventory Management**: Developed real‑time inventory tracking logic to prevent overselling and ensure accurate stock display on the storefront, updating quantities as orders are placed and fulfilled.
+- **UI/UX Implementation**: Leveraged Next.js, React, Ant Design, Radix UI components, and Tailwind CSS to create responsive, accessible, and visually appealing interfaces for both the storefront and the admin panel.
 
 ## Technologies Used
 
-- **Figma API**: For extracting design tokens and component data directly from the Figma designs.
-- **React and Next.js**: For building the front-end codebase with clean, reusable components.
-- **Styled-Components**: For managing styles dynamically using design tokens.
-- **GitHub Actions**: For automating the pipeline and syncing design changes to the repository.
+- **Next.js (v14)**: React framework for server‑side rendering, static generation, and API routes.
+- **React & TypeScript**: Core frontend libraries for component development and type safety.
+- **Tailwind CSS & Ant Design / Radix UI**: Utility‑first CSS framework and component libraries for consistent styling and design system integration.
+- **Zustand**: Lightweight state management for global client‑side data.
+- **react‑hook‑form & Zod**: Form handling and schema‑based validation for product forms, checkout flows, and admin inputs.
+- **MongoDB & Mongoose**: NoSQL database and ODM for schema definition, data modeling, and queries.
+- **NextAuth.js**: Authentication solution to handle login, registration, and role‑based access control.
+- **Paystack**: Payment gateway integration for secure Naira transactions and order payments.
+- **AWS S3 & AWS SES**: Cloud services for storing product images and sending automated emails.
+- **Tiptap**: Rich text editor used in the admin panel for creating and editing blog posts and product descriptions.
+- **Sharp**: Image processing library to optimize product images for different screen sizes.
+- **dayjs & slugify**: Utility libraries for date formatting and URL slug generation.
+- **Node-cron**: Scheduled task runner for periodic inventory sync and email reminders.
+- **Git & Vercel**: Version control and deployment platform.
 
 ## Challenges and Learnings
 
-One of the biggest challenges was ensuring that the generated code was clean and maintainable. This involved setting up intelligent mapping between Figma components and React code structures, as well as managing edge cases like responsive design and conditional rendering. Additionally, the continuous synchronization required a robust error-handling system to prevent conflicts during development.
+- **Complexity Management**: Handling the intricate logic of an e-commerce system with interconnected features (products, inventory, orders, users, promotions) required meticulous planning, component modularity, and clear API contracts.
+- **Scalable Architecture**: Designing the platform to handle growing product catalogs, increasing user traffic, and high order volumes influenced decisions around database indexing, API pagination, and caching strategies.
+- **Payment and Data Security**: Ensuring secure payment processing and protecting sensitive user data involved implementing industry best practices, such as HTTPS enforcement, tokenization, and strict Supabase policies for data access.
+- **Inventory Synchronization**: Developing robust inventory management logic to prevent overselling and maintain accurate stock levels across the storefront and admin panel presented a complex challenge in real‑time data consistency.
+- **Dual Interface Development**: Building and maintaining two distinct yet connected interfaces (customer storefront and admin dashboard) required thoughtful component reuse, consistent design patterns, and clear separation of concerns in the codebase.
+- **Performance Optimization**: Managing large product datasets, optimizing image loading with Sharp, and ensuring fast page load times through code‑splitting, lazy loading, and CDN usage improved user experience and SEO performance.
 
 ## Outcome
 
-The automated Figma to code pipeline has streamlined the handoff process, cutting down design-to-development time by 40%. Designers now have more confidence that their designs will be accurately translated into code, and developers can focus on more complex logic and feature development. This project has proven the value of automation in bridging the gap between design and development.
-
----
-
-This project demonstrates your ability to leverage automation and streamline workflows, which is highly relevant for design engineering portfolios focused on efficiency and innovation.
+The DEKATO e-commerce platform was successfully developed and launched, providing a fully functional and aesthetically pleasing online store for customers and a comprehensive management tool for administrators. The platform supports all key e-commerce operations, from browsing and purchasing to order fulfillment and customer service. My contributions as a mid‑level fullstack developer were crucial in building out the core architecture and features, significantly enhancing my expertise in developing complex, real‑world e-commerce solutions using modern web technologies.

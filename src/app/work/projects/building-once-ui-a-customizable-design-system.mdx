@@ -1,45 +1,59 @@
 ---
-title: "Building Once UI, a Customizable Design System"
-publishedAt: "2024-04-08"
-summary: "Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration."
+title: "Case Study: Full-Stack Development of Acc‑Gen, a Digital Services Platform"
+publishedAt: "2024-11-30"
+summary: "A mid‑level fullstack developer’s experience building Acc‑Gen: Nigeria’s digital services platform offering SMS verification, social media boosting, and premium account purchases with Naira payment."
+
 images:
   - "/images/projects/project-01/cover-01.jpg"
   - "/images/projects/project-01/cover-02.jpg"
   - "/images/projects/project-01/cover-03.jpg"
-  - "/images/projects/project-01/cover-04.jpg"
 team:
-  - name: "Selene Yu"
+  - name: "Damian Emerah"
     role: "Software Engineer"
-    avatar: "/images/avatar.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
-  - name: "Jane Smith"
-    role: "Product Manager"
-    avatar: "/images/projects/project-01/avatar-01.png"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
+    avatar: "/images/projects/project-01/avatar-01.jpg"
+    linkedIn: "https://www.linkedin.com/in/damianemerah/"
+  - name: "Cosmas Emerah"
+    role: "Software Engineer/ Product Manager"
+    avatar: "/images/projects/project-01/avatar-02.jpg"
+    linkedIn: "https://www.linkedin.com/in/cosmas-emerah/"
+link: "https://www.acc-gen.net/"
 ---
 
 ## Overview
 
-Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration.
+Acc‑Gen is a web platform designed to be Nigeria’s trusted hub for digital services. It offers instant SMS verification, social media boosting orders, and a marketplace for premium digital accounts, all billed in Naira using local payment methods. This two‑person fullstack team built the application from conception to deployment, where I served as a mid‑level developer.
 
 ## Key Features
 
-- **Component Library**: Built a set of modular, reusable UI components using React and styled-components in Next.js, focusing on accessibility and responsiveness.
-- **Theming and Customization**: Integrated a theming system that allows easy switching and customization of color palettes, typography, and layout styles using CSS variables and Figma tokens.
-- **Figma Integration**: Collaborated closely with designers by setting up a shared design library in Figma. This library was synchronized with the codebase, ensuring design handoffs were seamless and that design tokens remained consistent across both platforms.
-- **Documentation and Usage Guidelines**: Developed comprehensive documentation with Storybook to showcase components, usage patterns, and best practices, ensuring the design system is easy to adopt by other teams.
+- **Dashboard & User Management**: Developed a responsive dashboard displaying user balances, referral statistics, active orders, and transaction history. Integrated Supabase Auth for secure registration, login, session handling, and profile updates.
+- **SMS Verification & Social Boost Orders**: Implemented backend workflows to request SMS codes via third‑party APIs and built a UI for scheduling social boosting campaigns. Handled order creation, status tracking, and real‑time updates through Supabase’s real‑time services.
+- **Digital Accounts Marketplace**: Created a listing system for premium accounts with filtering and search, coupled with order processing logic using Next.js API routes and Supabase. Ensured secure handling of digital goods and user access control.
+- **Payment Integration**: Integrated Paystack and KoraPay to enable seamless Naira deposits, wallet management, and withdrawal requests. Built a secure transaction flow with hCaptcha protection and robust error handling.
+- **Referral Program**: Designed and implemented a referral system that generates unique codes and links, tracks referred sign‑ups, calculates commissions, and displays earnings in the user dashboard. Provided withdrawal functionality for accumulated referral earnings.
+- **UI/UX & Theming**: Utilized Next.js, React, TypeScript, Tailwind CSS, and shadcn/ui to create a clean, accessible interface. Implemented dark/light mode toggling and responsive design across dashboard components.
+- **State Management & Data Fetching**: Employed Zustand for efficient client‑side state management and SWR for data fetching, caching, and revalidation, ensuring a smooth and reactive user experience.
 
 ## Technologies Used
 
-- **Next.js**: For fast, server-rendered React applications.
-- **Figma**: For creating and managing design assets and prototypes.
-- **Styled-Components**: For styling React components with a modular, themable approach.
-- **Storybook**: For building an interactive, documented component library.
+- **Next.js**: React framework for server‑side rendering and API routes.
+- **React & TypeScript**: Core frontend libraries for component development and type safety.
+- **Tailwind CSS & shadcn/ui**: Utility‑first CSS framework and Radix‑based component library for styling.
+- **Zustand**: Lightweight state management for global client‑side data.
+- **react‑hook‑form & Zod**: Form handling and schema‑based validation.
+- **Supabase**: PostgreSQL database, authentication, and real‑time services.
+- **Paystack & KoraPay**: Payment gateways for Naira transactions.
+- **hCaptcha**: Bot protection for critical forms.
+- **SWR**: Data fetching and caching library.
+- **Git & Vercel**: Version control and deployment platform.
 
 ## Challenges and Learnings
 
-One key challenge was balancing the need for flexibility with the desire to maintain design consistency. The solution involved creating well-defined design tokens and establishing clear guidelines for when and how components could be customized. Additionally, setting up effective collaboration workflows between designers and developers using Figma and Git was a learning experience that greatly improved the process.
+- **Third‑Party Integrations**: Coordinating Supabase, two payment gateways, SMS APIs, and social‑boosting services required careful orchestration of endpoints, error handling, and security measures.
+- **Security & Data Integrity**: Ensuring safe handling of user credentials and financial data demanded implementation of best practices—JWT tokens, secure Supabase policies, and input sanitization.
+- **Complex Dashboard Layout**: Designing a dashboard that surfaces varied information—balances, referrals, orders—without clutter posed UI/UX challenges. The solution involved modular components, clear typography, and adaptive layouts.
+- **Small Team Collaboration**: In a two‑developer setup, maintaining code hygiene, consistent naming conventions, and clear Git branching strategies was essential. Pair programming and frequent code reviews streamlined development.
+- **Local Market Considerations**: Adapting to Nigeria‑specific requirements—Naira pricing, local payment workflows, hCaptcha for bot protection—offered insights into regional user behaviors and regulatory factors.
 
 ## Outcome
 
-The design system is now actively used across multiple projects, leading to faster development cycles, fewer design inconsistencies, and improved collaboration between design and development teams. It has become a foundation for scaling our products efficiently while ensuring a cohesive user experience.
+Acc‑Gen launched successfully as a secure, user‑friendly platform for digital services in Nigeria. The application offers a modern interface, seamless Naira payment processing, and a comprehensive referral program. My contributions as a mid‑level fullstack developer were instrumental in delivering core functionalities and ensuring a cohesive user experience. This project reinforced my expertise in Next.js, Supabase, and full‑stack integrations in a production environment.

@@ -2,6 +2,8 @@
 
 import React, { CSSProperties, useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import ImagePopover from "./ImagePopover";
+import { FaSearchPlus } from "react-icons/fa";
 
 import { Flex, Skeleton } from "@/once-ui/components";
 
@@ -31,56 +33,15 @@ const SmartImage: React.FC<SmartImageProps> = ({
   sizes = "100vw",
   ...rest
 }) => {
-  const [isEnlarged, setIsEnlarged] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (enlarge) {
-      setIsEnlarged(!isEnlarged);
+      setShowPopover(true);
     }
-  };
-
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isEnlarged) {
-        setIsEnlarged(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isEnlarged]);
-
-  useEffect(() => {
-    if (isEnlarged) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isEnlarged]);
-
-  const calculateTransform = () => {
-    if (!imageRef.current) return {};
-
-    const rect = imageRef.current.getBoundingClientRect();
-    const scaleX = window.innerWidth / rect.width;
-    const scaleY = window.innerHeight / rect.height;
-    const scale = Math.min(scaleX, scaleY) * 0.9;
-
-    const translateX = (window.innerWidth - rect.width) / 2 - rect.left;
-    const translateY = (window.innerHeight - rect.height) / 2 - rect.top;
-
-    return {
-      transform: isEnlarged
-        ? `translate(${translateX}px, ${translateY}px) scale(${scale})`
-        : "translate(0, 0) scale(1)",
-      transition: "all 0.3s ease-in-out",
-      zIndex: isEnlarged ? 2 : undefined,
-    };
+    if (rest.onClick) rest.onClick(e);
   };
 
   const isYouTubeVideo = (url: string) => {
@@ -91,7 +52,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
 
   const getYouTubeEmbedUrl = (url: string) => {
     const match = url.match(
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
     );
     return match
       ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
@@ -115,10 +76,11 @@ const SmartImage: React.FC<SmartImageProps> = ({
           isolation: "isolate",
           height: aspectRatio ? "" : height ? `${height}rem` : "100%",
           aspectRatio,
-          borderRadius: isEnlarged ? "0" : undefined,
-          ...calculateTransform(),
+          borderRadius: undefined,
         }}
         onClick={handleClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         {...rest}
       >
         {isLoading && <Skeleton shape="block" />}
@@ -162,60 +124,32 @@ const SmartImage: React.FC<SmartImageProps> = ({
             }}
           />
         )}
-      </Flex>
-
-      {isEnlarged && enlarge && (
-        <Flex
-          horizontal="center"
-          vertical="center"
-          position="fixed"
-          background="overlay"
-          onClick={handleClick}
-          top="0"
-          left="0"
-          opacity={isEnlarged ? 100 : 0}
-          cursor="interactive"
-          transition="macro-medium"
-          style={{
-            width: "100vw",
-            height: "100vh",
-          }}
-        >
-          <Flex
-            position="relative"
+        {enlarge && isHovered && !isLoading && !isVideo && !isYouTube && (
+          <span
             style={{
-              height: "100vh",
-              transform: "translate(-50%, -50%)",
+              position: "absolute",
+              top: 8,
+              right: 8,
+              background: "rgba(0,0,0,0.5)",
+              color: "#fff",
+              borderRadius: "50%",
+              padding: 6,
+              zIndex: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            onClick={(e) => e.stopPropagation()}
           >
-            {isVideo ? (
-              <video
-                src={src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: "90vw",
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-              />
-            ) : (
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="90vw"
-                unoptimized={unoptimized}
-                style={{
-                  objectFit: "contain",
-                }}
-              />
-            )}
-          </Flex>
-        </Flex>
+            <FaSearchPlus size={20} />
+          </span>
+        )}
+      </Flex>
+      {showPopover && enlarge && !isVideo && !isYouTube && (
+        <ImagePopover
+          src={src}
+          alt={alt}
+          onClose={() => setShowPopover(false)}
+        />
       )}
     </>
   );
