@@ -1,7 +1,14 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
+import {
+  AvatarGroup,
+  Button,
+  Column,
+  Heading,
+  Row,
+  Text,
+} from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -9,7 +16,7 @@ import ScrollToHash from "@/components/ScrollToHash";
 
 interface BlogParams {
   params: {
-    slug: string;
+    slug: Promise<string>;
   };
 }
 
@@ -20,8 +27,11 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }));
 }
 
-export function generateMetadata({ params: { slug } }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
+export async function generateMetadata({ params }: BlogParams) {
+  const slug = await params.slug;
+  let post = getPosts(["src", "app", "blog", "posts"]).find(
+    (post) => post.slug === slug
+  );
 
   if (!post) {
     return;
@@ -35,7 +45,9 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
     image,
     team,
   } = post.metadata;
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
+  let ogImage = image
+    ? `https://${baseURL}${image}`
+    : `https://${baseURL}/og?title=${title}`;
 
   return {
     title,
@@ -61,8 +73,11 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
   };
 }
 
-export default function Blog({ params }: BlogParams) {
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === params.slug);
+export default async function Blog({ params }: BlogParams) {
+  const slug = await params.slug;
+  let post = getPosts(["src", "app", "blog", "posts"]).find(
+    (post) => post.slug === slug
+  );
 
   if (!post) {
     notFound();
@@ -97,7 +112,13 @@ export default function Blog({ params }: BlogParams) {
           }),
         }}
       />
-      <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
+      <Button
+        href="/blog"
+        weight="default"
+        variant="tertiary"
+        size="s"
+        prefixIcon="chevronLeft"
+      >
         Posts
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>
