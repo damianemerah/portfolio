@@ -38,6 +38,21 @@ export async function generateMetadata() {
         "max-snippet": -1,
       },
     },
+    icons: {
+      icon: [
+        {
+          url: "/images/android-chrome-192x192.png",
+          type: "image/png",
+          sizes: "192x192",
+        },
+        {
+          url: "/images/android-chrome-512x512.png",
+          type: "image/png",
+          sizes: "512x512",
+        },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    },
   };
 }
 
