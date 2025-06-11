@@ -1,9 +1,13 @@
 declare module "prismjs" {
+  interface Grammar {
+    [key: string]: unknown;
+  }
+
   const Prism: {
     highlightAll: () => void;
-    highlight: (code: string, grammar: any, language: string) => string;
+    highlight: (code: string, grammar: Grammar, language: string) => string;
     languages: {
-      [language: string]: any;
+      [language: string]: Grammar;
     };
   };
   export default Prism;

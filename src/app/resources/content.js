@@ -12,7 +12,7 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to Damian's Dev & AI Newsletter</>,
+  title: <>Subscribe to Damian&apos;s Dev & AI Newsletter</>,
   description: (
     <>
       I share deep dives into Next.js performance tuning, SEO best practices,

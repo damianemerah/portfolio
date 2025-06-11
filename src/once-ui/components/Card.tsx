@@ -9,7 +9,7 @@ interface CardProps extends React.ComponentProps<typeof Flex> {
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, style, className, ...rest }, ref) => {
+  ({ children, ...rest }, ref) => {
     return (
       <Flex
         ref={ref}
@@ -23,7 +23,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         {children}
       </Flex>
     );
-  },
+  }
 );
 
 Card.displayName = "Card";

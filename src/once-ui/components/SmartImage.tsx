@@ -1,6 +1,6 @@
 "use client";
 
-import React, { CSSProperties, useState, useRef, useEffect } from "react";
+import React, { CSSProperties, useState, useRef } from "react";
 import Image from "next/image";
 import ImagePopover from "./ImagePopover";
 import { FaSearchPlus } from "react-icons/fa";

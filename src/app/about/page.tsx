@@ -285,19 +285,19 @@ export default function About() {
                             key={index}
                             border="neutral-medium"
                             radius="m"
-                            //@ts-ignore
+                            // @ts-expect-error TS2339: Property 'width' does not exist on type 'object'.
                             minWidth={image.width}
-                            //@ts-ignore
+                            // @ts-expect-error TS2339: Property 'height' does not exist on type 'object'.
                             height={image.height}
                           >
                             <SmartImage
                               enlarge
                               radius="m"
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'width' does not exist on type 'object'.
                               sizes={image.width.toString()}
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'alt' does not exist on type 'object'.
                               alt={image.alt}
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'src' does not exist on type 'object'.
                               src={image.src}
                             />
                           </Flex>
@@ -366,19 +366,19 @@ export default function About() {
                             key={index}
                             border="neutral-medium"
                             radius="m"
-                            //@ts-ignore
+                            // @ts-expect-error TS2339: Property 'width' does not exist on type 'object'.
                             minWidth={image.width}
-                            //@ts-ignore
+                            // @ts-expect-error TS2339: Property 'height' does not exist on type 'object'.
                             height={image.height}
                           >
                             <SmartImage
                               enlarge
                               radius="m"
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'width' does not exist on type 'object'.
                               sizes={image.width.toString()}
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'alt' does not exist on type 'object'.
                               alt={image.alt}
-                              //@ts-ignore
+                              // @ts-expect-error TS2339: Property 'src' does not exist on type 'object'.
                               src={image.src}
                             />
                           </Flex>

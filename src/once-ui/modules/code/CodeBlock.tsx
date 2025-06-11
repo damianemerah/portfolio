@@ -61,10 +61,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [selectedInstance, setSelectedInstance] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const { code, language, label } = codeInstances[selectedInstance] || {
+  const { code, language } = codeInstances[selectedInstance] || {
     code: "",
     language: "",
-    label: "Select code",
   };
 
   useEffect(() => {

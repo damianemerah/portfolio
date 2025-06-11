@@ -1,11 +1,19 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { ToggleButton, Scroller, Flex } from ".";
-import type { ToggleButtonProps } from "./ToggleButton";
 
-interface ButtonOption extends Omit<ToggleButtonProps, "selected"> {
+interface ButtonOption {
   value: string;
+  label?: ReactNode;
+  variant?: "ghost" | "outline";
+  size?: "s" | "m" | "l";
+  prefixIcon?: string;
+  suffixIcon?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  children?: ReactNode;
+  type?: 'button';
 }
 
 interface SegmentedControlProps extends Omit<React.ComponentProps<typeof Scroller>, "onToggle"> {
@@ -24,8 +32,6 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
   defaultSelected,
   fillWidth = true,
   selected,
-  className,
-  style,
   ...scrollerProps
 }) => {
   const [internalSelected, setInternalSelected] = useState<string>(() => {
@@ -120,6 +126,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
               aria-controls={`panel-${button.value}`}
               tabIndex={index === selectedIndex ? 0 : -1}
               fillWidth={fillWidth}
+              type="button"
               {...button}
             />
           );

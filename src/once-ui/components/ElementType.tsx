@@ -6,9 +6,10 @@ interface ElementTypeProps {
   children: ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
+  // eslint-enable-next-line @typescript-eslint/no-explicit-any
 }
-
 const isExternalLink = (url: string) => /^https?:\/\//.test(url);
 
 const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
@@ -52,7 +53,7 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
         {children}
       </button>
     );
-  },
+  }
 );
 
 ElementType.displayName = "ElementType";

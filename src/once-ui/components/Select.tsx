@@ -32,8 +32,6 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       searchable = false,
       emptyState = "No results",
       minHeight,
-      minWidth,
-      maxWidth,
       floatingPlacement,
       className,
       style,

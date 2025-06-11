@@ -7,6 +7,7 @@ import React, {
   ReactNode,
   forwardRef,
   useImperativeHandle,
+  useCallback,
 } from "react";
 import {
   useFloating,
@@ -41,7 +42,6 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
     {
       trigger,
       dropdown,
-      selectedOption,
       minHeight,
       onSelect,
       isOpen: controlledIsOpen,
@@ -53,7 +53,7 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
       className,
       style,
     },
-    ref,
+    ref
   ) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -63,12 +63,15 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
     const isControlled = controlledIsOpen !== undefined;
     const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
 
-    const handleOpenChange = (newIsOpen: boolean) => {
-      if (!isControlled) {
-        setInternalIsOpen(newIsOpen);
-      }
-      onOpenChange?.(newIsOpen);
-    };
+    const handleOpenChange = useCallback(
+      (newIsOpen: boolean) => {
+        if (!isControlled) {
+          setInternalIsOpen(newIsOpen);
+        }
+        onOpenChange?.(newIsOpen);
+      },
+      [isControlled, onOpenChange]
+    );
 
     const { x, y, strategy, refs, update } = useFloating({
       placement: floatingPlacement,
@@ -104,7 +107,7 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
       if (!mounted) {
         setMounted(true);
       }
-    }, []);
+    }, [mounted]);
 
     useEffect(() => {
       if (isOpen && mounted) {
@@ -117,26 +120,39 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
       }
     }, [isOpen, mounted, refs, update]);
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-        handleOpenChange(false);
-      }
-    };
+    const handleClickOutside = useCallback(
+      (event: MouseEvent) => {
+        if (
+          wrapperRef.current &&
+          !wrapperRef.current.contains(event.target as Node)
+        ) {
+          handleOpenChange(false);
+        }
+      },
+      [handleOpenChange]
+    );
 
-    const handleFocusOut = (event: FocusEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.relatedTarget as Node)) {
-        handleOpenChange(false);
-      }
-    };
+    const handleFocusOut = useCallback(
+      (event: FocusEvent) => {
+        if (
+          wrapperRef.current &&
+          !wrapperRef.current.contains(event.relatedTarget as Node)
+        ) {
+          handleOpenChange(false);
+        }
+      },
+      [handleOpenChange]
+    );
 
     useEffect(() => {
+      const currentRef = wrapperRef.current;
       document.addEventListener("mousedown", handleClickOutside);
-      wrapperRef.current?.addEventListener("focusout", handleFocusOut);
+      currentRef?.addEventListener("focusout", handleFocusOut);
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
-        wrapperRef.current?.removeEventListener("focusout", handleFocusOut);
+        currentRef?.removeEventListener("focusout", handleFocusOut);
       };
-    }, []);
+    }, [handleClickOutside, handleFocusOut]);
 
     return (
       <Flex
@@ -181,19 +197,14 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
             }}
             role="listbox"
           >
-            <Dropdown
-              minWidth={minWidth}
-              radius="l"
-              selectedOption={selectedOption}
-              onSelect={onSelect}
-            >
+            <Dropdown minWidth={minWidth} radius="l" onSelect={onSelect}>
               {dropdown}
             </Dropdown>
           </Flex>
         )}
       </Flex>
     );
-  },
+  }
 );
 
 DropdownWrapper.displayName = "DropdownWrapper";

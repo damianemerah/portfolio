@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Flex } from "@/once-ui/components";
+import Image from "next/image";
 
 interface ImagePopoverProps {
   src: string;
@@ -50,9 +51,11 @@ const ImagePopover: React.FC<ImagePopoverProps> = ({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <Image
           src={src}
           alt={alt}
+          fill
+          sizes="90vw"
           style={{
             width: "100%",
             height: "100%",

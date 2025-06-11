@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var components_1 = require("@/once-ui/components");
+var image_1 = require("next/image");
 var ImagePopover = function (_a) {
     var src = _a.src, _b = _a.alt, alt = _b === void 0 ? "" : _b, onClose = _a.onClose;
     react_1.useEffect(function () {
@@ -28,7 +29,7 @@ var ImagePopover = function (_a) {
                 maxHeight: "90vh",
                 boxShadow: "0 0 24px rgba(0,0,0,0.5)"
             }, onClick: function (e) { return e.stopPropagation(); } },
-            react_1["default"].createElement("img", { src: src, alt: alt, style: {
+            react_1["default"].createElement(image_1["default"], { src: src, alt: alt, fill: true, sizes: "90vw", style: {
                     width: "100%",
                     height: "100%",
                     objectFit: "contain",

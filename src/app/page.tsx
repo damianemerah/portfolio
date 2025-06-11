@@ -7,7 +7,6 @@ import {
   Button,
   Avatar,
   RevealFx,
-  Arrow,
   Column,
 } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";

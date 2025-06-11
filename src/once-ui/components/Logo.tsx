@@ -6,6 +6,7 @@ import classNames from "classnames";
 import styles from "./Logo.module.scss";
 import { SpacingToken } from "../types";
 import { Flex } from ".";
+import Image from "next/image";
 
 const sizeMap: Record<string, SpacingToken> = {
   xs: "20",
@@ -40,7 +41,7 @@ const Logo: React.FC<LogoProps> = ({
   useEffect(() => {
     if (!icon && !wordmark) {
       console.warn(
-        "Both 'icon' and 'wordmark' props are set to false. The logo will not render any content.",
+        "Both 'icon' and 'wordmark' props are set to false. The logo will not render any content."
       );
     }
   }, [icon, wordmark]);
@@ -56,13 +57,15 @@ const Logo: React.FC<LogoProps> = ({
         />
       )}
       {iconSrc && (
-        <img
+        <Image
           style={{
             height: `var(--static-space-${sizeMap[size]})`,
             width: "auto",
           }}
           alt="Trademark"
           src={iconSrc}
+          width={48}
+          height={48}
         />
       )}
       {wordmark && !wordmarkSrc && (
@@ -74,13 +77,15 @@ const Logo: React.FC<LogoProps> = ({
         />
       )}
       {wordmarkSrc && (
-        <img
+        <Image
           style={{
             height: `var(--static-space-${sizeMap[size]})`,
             width: "auto",
           }}
           alt="Trademark"
           src={wordmarkSrc}
+          width={48}
+          height={48}
         />
       )}
     </>
@@ -88,7 +93,12 @@ const Logo: React.FC<LogoProps> = ({
 
   return href ? (
     <Link
-      className={classNames("radius-l", "display-flex", "fit-height", className)}
+      className={classNames(
+        "radius-l",
+        "display-flex",
+        "fit-height",
+        className
+      )}
       style={style}
       href={href}
       aria-label="Trademark"

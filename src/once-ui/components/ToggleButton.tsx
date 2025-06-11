@@ -33,7 +33,8 @@ interface CommonProps {
   href?: string;
 }
 
-export type ToggleButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ToggleButtonProps = CommonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
   (
@@ -46,7 +47,7 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
       justifyContent = "center",
       fillWidth = false,
       weight = "default",
-      truncate = false,
+      // truncate = false,
       prefixIcon,
       suffixIcon,
       className,
@@ -55,7 +56,7 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
       href,
       ...props
     },
-    ref,
+    ref
   ) => {
     return (
       <ElementType
@@ -69,8 +70,8 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
           radius === "none"
             ? "radius-none"
             : radius
-              ? `radius-${size}-${radius}`
-              : `radius-${size}`,
+            ? `radius-${size}-${radius}`
+            : `radius-${size}`,
           "text-decoration-none",
           "button",
           "cursor-interactive",
@@ -79,12 +80,14 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
             ["fit-width"]: !fillWidth,
             ["justify-" + justifyContent]: justifyContent,
           },
-          className,
+          className
         )}
         style={style}
         {...props}
       >
-        {prefixIcon && <Icon name={prefixIcon} size={size === "l" ? "m" : "s"} />}
+        {prefixIcon && (
+          <Icon name={prefixIcon} size={size === "l" ? "m" : "s"} />
+        )}
         {(label || children) && (
           <Flex
             padding={size === "s" ? "2" : "4"}
@@ -95,10 +98,12 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
             {label || children}
           </Flex>
         )}
-        {suffixIcon && <Icon name={suffixIcon} size={size === "l" ? "m" : "s"} />}
+        {suffixIcon && (
+          <Icon name={suffixIcon} size={size === "l" ? "m" : "s"} />
+        )}
       </ElementType>
     );
-  },
+  }
 );
 
 ToggleButton.displayName = "ToggleButton";

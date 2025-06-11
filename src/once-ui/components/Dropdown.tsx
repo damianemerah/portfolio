@@ -3,15 +3,15 @@
 import React, { ReactNode, forwardRef, SyntheticEvent } from "react";
 import { Flex } from ".";
 
-interface DropdownProps extends Omit<React.ComponentProps<typeof Flex>, "onSelect"> {
-  selectedOption?: string;
+interface DropdownProps
+  extends Omit<React.ComponentProps<typeof Flex>, "onSelect"> {
   children?: ReactNode;
   onEscape?: () => void;
   onSelect?: (event: string) => void;
 }
 
 const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
-  ({ selectedOption, className, children, onEscape, onSelect, ...rest }, ref) => {
+  ({ children, onSelect, ...rest }, ref) => {
     const handleSelect = (event: SyntheticEvent<HTMLDivElement>) => {
       const value = event.currentTarget.getAttribute("data-value");
       if (onSelect && value) {
@@ -35,7 +35,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         </Flex>
       </Flex>
     );
-  },
+  }
 );
 
 Dropdown.displayName = "Dropdown";

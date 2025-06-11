@@ -11,6 +11,8 @@ import { Source_Code_Pro } from "next/font/google";
 
 import { person, home } from "@/app/resources/content";
 import { Background, Column, Flex, ToastProvider } from "@/once-ui/components";
+import { SpacingToken } from "@/once-ui/types";
+import { DisplayProps } from "@/once-ui/interfaces";
 
 export async function generateMetadata() {
   return {
@@ -87,11 +89,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         primary.variable,
         secondary ? secondary.variable : "",
         tertiary ? tertiary.variable : "",
-        code.variable,
+        code.variable
       )}
     >
       <ToastProvider>
-        <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+        <Column
+          style={{ minHeight: "100vh" }}
+          as="body"
+          fillWidth
+          margin="0"
+          padding="0"
+        >
           <Background
             mask={{
               cursor: effects.mask.cursor,
@@ -124,19 +132,19 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             dots={{
               display: effects.dots.display,
               color: effects.dots.color,
-              size: effects.dots.size as any,
-              opacity: effects.dots.opacity as any,
+              size: effects.dots.size as unknown as SpacingToken,
+              opacity: effects.dots.opacity as DisplayProps["opacity"],
             }}
             grid={{
               display: effects.grid.display,
               color: effects.grid.color,
-              width: effects.grid.width as any,
-              height: effects.grid.height as any,
-              opacity: effects.grid.opacity as any,
+              width: effects.grid.width,
+              height: effects.grid.height,
+              opacity: effects.grid.opacity as DisplayProps["opacity"],
             }}
             lines={{
               display: effects.lines.display,
-              opacity: effects.lines.opacity as any,
+              opacity: effects.lines.opacity as DisplayProps["opacity"],
             }}
           />
           <Flex fillWidth minHeight="16"></Flex>

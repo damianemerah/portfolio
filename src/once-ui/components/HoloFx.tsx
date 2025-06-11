@@ -44,9 +44,15 @@ const getMaskStyle = (mask?: MaskOptions): string => {
   return mask?.maskPosition ? formatMask(mask.maskPosition) : formatMask();
 };
 
-const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest }) => {
+const HoloFx: React.FC<HoloFxProps> = ({
+  children,
+  light,
+  burn,
+  texture,
+  ...rest
+}) => {
   const ref = useRef<HTMLDivElement>(null);
-  let lastCall = 0;
+  const lastCallRef = useRef<number>(0);
 
   const lightDefaults = {
     opacity: 30,
@@ -75,8 +81,8 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const now = Date.now();
-      if (now - lastCall < 16) return;
-      lastCall = now;
+      if (now - lastCallRef.current < 16) return;
+      lastCallRef.current = now;
 
       const element = ref.current;
       if (!element) return;
@@ -103,7 +109,13 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
   }, []);
 
   return (
-    <Flex position="relative" overflow="hidden" className={styles.holoFx} ref={ref} {...rest}>
+    <Flex
+      position="relative"
+      overflow="hidden"
+      className={styles.holoFx}
+      ref={ref}
+      {...rest}
+    >
       <Flex fill className={styles.base}>
         {children}
       </Flex>
@@ -113,12 +125,14 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
         fill
         pointerEvents="none"
         className={classNames(styles.overlay, styles.burn)}
-        style={{
-          ["--burn-opacity" as any]: burnDefaults.opacity + "%",
-          filter: burnDefaults.filter,
-          mixBlendMode: burnDefaults.blending,
-          maskImage: burnDefaults.mask as string,
-        }}
+        style={
+          {
+            "--burn-opacity": burnDefaults.opacity + "%",
+            filter: burnDefaults.filter,
+            mixBlendMode: burnDefaults.blending,
+            maskImage: burnDefaults.mask as string,
+          } as React.CSSProperties
+        }
       >
         {children}
       </Flex>
@@ -128,12 +142,14 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
         fill
         pointerEvents="none"
         className={classNames(styles.overlay, styles.light)}
-        style={{
-          ["--light-opacity" as any]: lightDefaults.opacity + "%",
-          filter: lightDefaults.filter,
-          mixBlendMode: lightDefaults.blending,
-          maskImage: lightDefaults.mask as string,
-        }}
+        style={
+          {
+            "--light-opacity": lightDefaults.opacity + "%",
+            filter: lightDefaults.filter,
+            mixBlendMode: lightDefaults.blending,
+            maskImage: lightDefaults.mask as string,
+          } as React.CSSProperties
+        }
       >
         {children}
       </Flex>
@@ -143,13 +159,15 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, light, burn, texture, ...rest
         fill
         pointerEvents="none"
         className={classNames(styles.overlay, styles.texture)}
-        style={{
-          ["--texture-opacity" as any]: textureDefaults.opacity + "%",
-          backgroundImage: textureDefaults.image,
-          filter: textureDefaults.filter,
-          mixBlendMode: textureDefaults.blending,
-          maskImage: textureDefaults.mask as string,
-        }}
+        style={
+          {
+            "--texture-opacity": textureDefaults.opacity + "%",
+            backgroundImage: textureDefaults.image,
+            filter: textureDefaults.filter,
+            mixBlendMode: textureDefaults.blending,
+            maskImage: textureDefaults.mask as string,
+          } as React.CSSProperties
+        }
       ></Flex>
     </Flex>
   );

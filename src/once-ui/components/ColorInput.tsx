@@ -28,7 +28,14 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
       <Input
         style={{ cursor: "pointer" }}
         id={id}
-        ref={colorInputRef}
+        ref={(node) => {
+          colorInputRef.current = node;
+          if (typeof ref === 'function') {
+            ref(node);
+          } else if (ref) {
+            ref.current = node;
+          }
+        }}
         label={label}
         type="color"
         value={value}
@@ -37,14 +44,20 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
           <Flex>
             <Flex
               style={{
-                width: value ? "var(--static-space-0)" : "var(--static-space-20)",
+                width: value
+                  ? "var(--static-space-0)"
+                  : "var(--static-space-20)",
                 transform: value ? "scale(0)" : "scale(1)",
                 opacity: value ? "0" : "1",
                 transition: "0.2s ease-in-out all",
               }}
             >
               <Flex padding="2">
-                <Icon size="xs" name="eyeDropper" onBackground="neutral-medium" />
+                <Icon
+                  size="xs"
+                  name="eyeDropper"
+                  onBackground="neutral-medium"
+                />
               </Flex>
             </Flex>
             <Flex
@@ -56,7 +69,9 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
               style={{
                 backgroundColor: value,
                 cursor: "pointer",
-                width: value ? "var(--static-space-20)" : "var(--static-space-0)",
+                width: value
+                  ? "var(--static-space-20)"
+                  : "var(--static-space-0)",
                 transform: value ? "scale(1)" : "scale(0)",
                 opacity: value ? "1" : "0",
                 transition: "0.2s ease-in-out all",
@@ -103,7 +118,7 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
         onChange={onChange}
       />
     );
-  },
+  }
 );
 
 ColorInput.displayName = "ColorInput";

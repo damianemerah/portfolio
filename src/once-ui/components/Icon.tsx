@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, useState, useEffect, ReactNode } from "react";
+import React, { forwardRef, useState, ReactNode } from "react";
 import classNames from "classnames";
 import { IconType } from "react-icons";
 import { iconLibrary } from "../icons";
@@ -31,9 +31,11 @@ const Icon = forwardRef<HTMLDivElement, IconProps>(
       tooltipPosition = "top",
       ...rest
     },
-    ref,
+    ref
   ) => {
+    const [isTooltipVisible, setTooltipVisible] = useState(false);
     const IconComponent: IconType | undefined = iconLibrary[name];
+    let tooltipTimer: NodeJS.Timeout;
 
     if (!IconComponent) {
       console.warn(`Icon "${name}" does not exist in the library.`);
@@ -42,35 +44,32 @@ const Icon = forwardRef<HTMLDivElement, IconProps>(
 
     if (onBackground && onSolid) {
       console.warn(
-        "You cannot use both 'onBackground' and 'onSolid' props simultaneously. Only one will be applied.",
+        "You cannot use both 'onBackground' and 'onSolid' props simultaneously. Only one will be applied."
       );
     }
 
     let colorClass = "color-inherit";
-
     if (onBackground) {
-      const [scheme, weight] = onBackground.split("-") as [ColorScheme, ColorWeight];
+      const [scheme, weight] = onBackground.split("-") as [
+        ColorScheme,
+        ColorWeight
+      ];
       colorClass = `${scheme}-on-background-${weight}`;
     } else if (onSolid) {
       const [scheme, weight] = onSolid.split("-") as [ColorScheme, ColorWeight];
       colorClass = `${scheme}-on-solid-${weight}`;
     }
 
-    const [isTooltipVisible, setTooltipVisible] = useState(false);
-    const [isHover, setIsHover] = useState(false);
+    const handleMouseEnter = () => {
+      tooltipTimer = setTimeout(() => {
+        setTooltipVisible(true);
+      }, 400);
+    };
 
-    useEffect(() => {
-      let timer: NodeJS.Timeout;
-      if (isHover) {
-        timer = setTimeout(() => {
-          setTooltipVisible(true);
-        }, 400);
-      } else {
-        setTooltipVisible(false);
-      }
-
-      return () => clearTimeout(timer);
-    }, [isHover]);
+    const handleMouseLeave = () => {
+      clearTimeout(tooltipTimer);
+      setTooltipVisible(false);
+    };
 
     return (
       <Flex
@@ -83,19 +82,23 @@ const Icon = forwardRef<HTMLDivElement, IconProps>(
         role={decorative ? "presentation" : undefined}
         aria-hidden={decorative ? "true" : undefined}
         aria-label={decorative ? undefined : name}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         {...rest}
       >
         <IconComponent />
         {tooltip && isTooltipVisible && (
-          <Flex position="absolute" zIndex={1} className={iconStyles[tooltipPosition]}>
+          <Flex
+            position="absolute"
+            zIndex={1}
+            className={iconStyles[tooltipPosition]}
+          >
             <Tooltip label={tooltip} />
           </Flex>
         )}
       </Flex>
     );
-  },
+  }
 );
 
 Icon.displayName = "Icon";

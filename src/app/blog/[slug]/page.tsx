@@ -25,7 +25,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 
 export async function generateMetadata({ params }: { params: BlogParams }) {
   const { slug } = await params;
-  let post = getPosts(["src", "app", "blog", "posts"]).find(
+  const post = getPosts(["src", "app", "blog", "posts"]).find(
     (post) => post.slug === slug
   );
 
@@ -33,15 +33,13 @@ export async function generateMetadata({ params }: { params: BlogParams }) {
     return;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
-    images,
     image,
-    team,
   } = post.metadata;
-  let ogImage = image
+  const ogImage = image
     ? `https://${baseURL}${image}`
     : `https://${baseURL}/og?title=${title}`;
 
@@ -71,7 +69,7 @@ export async function generateMetadata({ params }: { params: BlogParams }) {
 
 export default async function Blog({ params }: { params: BlogParams }) {
   const { slug } = await params;
-  let post = getPosts(["src", "app", "blog", "posts"]).find(
+  const post = getPosts(["src", "app", "blog", "posts"]).find(
     (post) => post.slug === slug
   );
 
