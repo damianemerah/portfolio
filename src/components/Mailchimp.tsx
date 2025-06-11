@@ -1,6 +1,6 @@
 "use client";
 
-import { mailchimp } from "@/app/resources";
+import { resend } from "@/app/resources";
 import {
   Button,
   Flex,
@@ -16,7 +16,7 @@ import { DisplayProps } from "@/once-ui/interfaces";
 
 function debounce<T extends (...args: unknown[]) => void>(
   func: T,
-  delay: number
+  delay: number = 2000
 ): T {
   let timeout: ReturnType<typeof setTimeout>;
   return ((...args: Parameters<T>) => {
@@ -31,23 +31,25 @@ type NewsletterProps = {
   description: string | React.ReactNode;
 };
 
-export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
+export const ResendNewsletter = ({
+  newsletter,
+}: {
+  newsletter: NewsletterProps;
+}) => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const validateEmail = (email: string): boolean => {
     if (email === "") {
       return true;
     }
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-
+  const validate = (value: string) => {
     if (!validateEmail(value)) {
       setError("Please enter a valid email address.");
     } else {
@@ -55,13 +57,52 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
     }
   };
 
-  const debouncedHandleChange = debounce(handleChange, 2000);
+  const debouncedValidate = debounce(validate, 3000);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    setError("");
+    debouncedValidate(value);
+  };
 
   const handleBlur = () => {
     if (!validateEmail(email)) {
       setError("Please enter a valid email address.");
     }
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSuccess("");
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setSuccess("Thank you for subscribing!");
+        setEmail("");
+      } else {
+        const data = await res.json();
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const effects = resend.effects || {};
 
   return (
     <Column
@@ -78,39 +119,38 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
     >
       <Background
         mask={{
-          cursor: mailchimp.effects.mask.cursor,
-          x: mailchimp.effects.mask.x,
-          y: mailchimp.effects.mask.y,
-          radius: mailchimp.effects.mask.radius,
+          cursor: effects.mask?.cursor,
+          x: effects.mask?.x,
+          y: effects.mask?.y,
+          radius: effects.mask?.radius,
         }}
         gradient={{
-          display: mailchimp.effects.gradient.display,
-          x: mailchimp.effects.gradient.x,
-          y: mailchimp.effects.gradient.y,
-          width: mailchimp.effects.gradient.width,
-          height: mailchimp.effects.gradient.height,
-          tilt: mailchimp.effects.gradient.tilt,
-          colorStart: mailchimp.effects.gradient.colorStart,
-          colorEnd: mailchimp.effects.gradient.colorEnd,
-          opacity: mailchimp.effects.gradient
-            .opacity as DisplayProps["opacity"],
+          display: effects.gradient?.display,
+          x: effects.gradient?.x,
+          y: effects.gradient?.y,
+          width: effects.gradient?.width,
+          height: effects.gradient?.height,
+          tilt: effects.gradient?.tilt,
+          colorStart: effects.gradient?.colorStart,
+          colorEnd: effects.gradient?.colorEnd,
+          opacity: effects.gradient?.opacity as DisplayProps["opacity"],
         }}
         dots={{
-          display: mailchimp.effects.dots.display,
-          color: mailchimp.effects.dots.color,
-          size: mailchimp.effects.dots.size as unknown as SpacingToken,
-          opacity: mailchimp.effects.dots.opacity as DisplayProps["opacity"],
+          display: effects.dots?.display,
+          color: effects.dots?.color,
+          size: effects.dots?.size as unknown as SpacingToken,
+          opacity: effects.dots?.opacity as DisplayProps["opacity"],
         }}
         grid={{
-          display: mailchimp.effects.grid.display,
-          color: mailchimp.effects.grid.color,
-          width: mailchimp.effects.grid.width as SpacingToken,
-          height: mailchimp.effects.grid.height as SpacingToken,
-          opacity: mailchimp.effects.grid.opacity as DisplayProps["opacity"],
+          display: effects.grid?.display,
+          color: effects.grid?.color,
+          width: effects.grid?.width as SpacingToken,
+          height: effects.grid?.height as SpacingToken,
+          opacity: effects.grid?.opacity as DisplayProps["opacity"],
         }}
         lines={{
-          display: mailchimp.effects.lines.display,
-          opacity: mailchimp.effects.lines.opacity as DisplayProps["opacity"],
+          display: effects.lines?.display,
+          opacity: effects.lines?.opacity as DisplayProps["opacity"],
         }}
       />
       <Heading
@@ -137,81 +177,49 @@ export const Mailchimp = ({ newsletter }: { newsletter: NewsletterProps }) => {
           display: "flex",
           justifyContent: "center",
         }}
-        action={mailchimp.action}
-        method="post"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
+        onSubmit={handleSubmit}
       >
-        <Flex id="mc_embed_signup_scroll" fillWidth maxWidth={24} gap="8">
+        <Flex fillWidth maxWidth={24} gap="8">
           <Input
             formNoValidate
             labelAsPlaceholder
-            id="mce-EMAIL"
+            id="newsletter-email"
             name="EMAIL"
             type="email"
             label="Email"
             required
-            onChange={(e) => {
-              if (error) {
-                handleChange(e);
-              } else {
-                debouncedHandleChange(e);
-              }
-            }}
+            value={email}
+            onChange={handleChange}
             onBlur={handleBlur}
             errorMessage={error}
+            disabled={loading}
           />
-          <div style={{ display: "none" }}>
-            <input
-              type="checkbox"
-              readOnly
-              name="group[3492][1]"
-              id="mce-group[3492]-3492-0"
-              value=""
-              checked
-            />
-          </div>
-          <div id="mce-responses" className="clearfalse">
-            <div
-              className="response"
-              id="mce-error-response"
-              style={{ display: "none" }}
-            ></div>
-            <div
-              className="response"
-              id="mce-success-response"
-              style={{ display: "none" }}
-            ></div>
-          </div>
-          <div
-            aria-hidden="true"
-            style={{ position: "absolute", left: "-5000px" }}
-          >
-            <input
-              type="text"
-              readOnly
-              name="b_c1a5a210340eb6c7bff33b2ba_0462d244aa"
-              tabIndex={-1}
-              value=""
-            />
-          </div>
           <div className="clear">
             <Flex height="48" vertical="center">
               <Button
-                id="mc-embedded-subscribe"
+                id="newsletter-subscribe"
                 value="Subscribe"
                 size="m"
                 fillWidth
-                onClick={() => {
-                  alert("clicked");
-                }}
+                type="submit"
+                disabled={loading}
               >
-                Subscribe
+                {loading ? "Subscribing..." : "Subscribe"}
               </Button>
             </Flex>
           </div>
         </Flex>
       </form>
+      {success && (
+        <Text marginTop="m" onBackground="brand-strong">
+          {success}
+        </Text>
+      )}
+      {error && !loading && (
+        <Text marginTop="m" onBackground="accent-strong">
+          {error}
+        </Text>
+      )}
     </Column>
   );
 };

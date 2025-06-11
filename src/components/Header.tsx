@@ -3,7 +3,13 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Fade, Flex, Line, ToggleButton } from "@/once-ui/components";
+import {
+  Fade,
+  Flex,
+  Line,
+  ToggleButton,
+  IconButton,
+} from "@/once-ui/components";
 import styles from "@/components/Header.module.scss";
 
 import { routes, display } from "@/app/resources";
@@ -47,6 +53,24 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      return (
+        (document.documentElement.getAttribute("data-theme") as
+          | "light"
+          | "dark") || "dark"
+      );
+    }
+    return "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
   return (
     <>
@@ -179,6 +203,18 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
+            <IconButton
+              icon={theme === "light" ? "dark" : "light"}
+              variant="ghost"
+              size="m"
+              tooltip={
+                theme === "light"
+                  ? "Switch to dark mode"
+                  : "Switch to light mode"
+              }
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            />
             <Flex hide="s">
               {display.time && <TimeDisplay timeZone={person.location} />}
             </Flex>

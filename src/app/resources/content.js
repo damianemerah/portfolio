@@ -59,7 +59,7 @@ const home = {
   headline: <>Web developer</>,
   subline: (
     <>
-      I’m Damian, a web developer based in Lagos. I build intuitive
+      I&apos;m Damian, a web developer based in Lagos. I build intuitive
       <br />
       user experiences by day — and by night, I bring personal ideas to life
       through code.
@@ -209,13 +209,13 @@ const about = {
 const blog = {
   label: "Blog",
   title: "Insights on Web Development & AI",
-  description: `Dive into Damian Emerah’s latest posts on Next.js performance, SEO strategies, React & Tailwind patterns, and practical AI integrations.`,
+  description: `Dive into Damian Emerah's latest posts on Next.js performance, SEO strategies, React & Tailwind patterns, and practical AI integrations.`,
 };
 
 const work = {
   label: "Work",
   title: "Featured Projects",
-  description: `Explore Damian Emerah’s portfolio of web apps—from high‑performance e‑commerce platforms to AI‑powered tools, all built with modern stacks.`,
+  description: `Explore Damian Emerah's portfolio of web apps—from high‑performance e‑commerce platforms to AI‑powered tools, all built with modern stacks.`,
 };
 
 const gallery = {

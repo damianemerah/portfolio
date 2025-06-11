@@ -67,8 +67,8 @@ const display = {
   time: true,
 };
 
-const mailchimp = {
-  action: "https://url/subscribe/post?parameters",
+const resend = {
+  contactList: "Newsletter-list", // Name of the contact list in Resend
   effects: {
     mask: {
       cursor: false,
@@ -106,4 +106,4 @@ const mailchimp = {
   },
 };
 
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL };
+export { routes, protectedRoutes, effects, style, display, resend, baseURL };
