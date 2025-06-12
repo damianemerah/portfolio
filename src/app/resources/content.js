@@ -7,7 +7,7 @@ const person = {
   role: "Web Developer",
   avatar: "/images/projects/project-01/avatar-01.jpg",
   location: "Africa/Lagos",
-  languages: ["English"],
+  languages: ["English", "Igbo"],
 };
 
 const newsletter = {
@@ -70,7 +70,7 @@ const home = {
 const about = {
   label: "About",
   title: "About Me",
-  description: `Meet Damian Emerah, Web Developer from Lagos, Nigeria`,
+  description: `Resume of Damian Emerah, Web Developer based in Lagos, Nigeria`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -82,68 +82,179 @@ const about = {
     display: true,
     link: "https://cal.com/damianemerah",
   },
+  contact: {
+    address: "Lakeview II, Lekki, Eti-Osa, Lagos State, Nigeria",
+    phone: "+234 706 676 5698",
+    email: "damianemerah@gmail.com",
+    linkedin: "https://www.linkedin.com/in/damianemerah/",
+    portfolio: "https://github.com/damianemerah/",
+  },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Damian is a Lagos‑based web developer with a strong foundation in
-        industrial mathematics and statistics, and a passion for transforming
-        design into high‑performance, SEO‑optimized, and responsive web
-        applications. He excels at converting Figma mocks into production‑ready
-        code using Next.js, React, and Tailwind CSS, while leveraging AWS and
-        CI/CD pipelines to streamline deployments and reduce costs.
+        <strong>DAMIAN EMERAH</strong> is a Web Developer based in Lagos,
+        Nigeria, specializing in building high-performance, SEO-optimized web
+        applications. Experienced in both frontend and backend development,
+        Damian delivers robust solutions for clients across Africa and beyond.
       </>
     ),
   },
+  technical: {
+    display: true,
+    title: "Skills",
+    skills: [
+      {
+        title: "Frontend",
+        description: (
+          <>
+            React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS
+          </>
+        ),
+        images: [],
+      },
+      {
+        title: "Backend",
+        description: <>Node.js, Express.js, Python (Basic)</>,
+        images: [],
+      },
+      {
+        title: "Databases",
+        description: <>MongoDB, PostgreSQL, Supabase, Firebase, Prisma</>,
+        images: [],
+      },
+      {
+        title: "Tools & Cloud",
+        description: (
+          <>
+            AWS (SES, S3, CloudFront), Git/Github, Vercel, Paystack, Figma,
+            Postman
+          </>
+        ),
+        images: [],
+      },
+      {
+        title: "Others",
+        description: <>SEO, PWA, REST APIs</>,
+        images: [],
+      },
+      {
+        title: "Languages",
+        description: <>English (Fluent), Igbo (Native)</>,
+        images: [],
+      },
+    ],
+  },
   work: {
     display: true,
-    title: "Work Experience",
+    title: "Experience",
     experiences: [
       {
-        company: "Self‑Employed",
-        timeframe: "2022 – Present",
-        role: "Freelance Web Developer",
+        company: "Glow Cosmetics, South Africa",
+        timeframe: "Mar 2025 - May 2025",
+        role: "Full-Stack Developer (Remote)",
         achievements: [
           <>
-            Co‑developed Acc‑gen, a full‑stack SMS verification and social media
-            growth app using TypeScript, Next.js, and Supabase; built a support
-            system that improved user retention and engagement.
+            Developed a full-stack booking and e-commerce platform using
+            Next.js, PostgreSQL, Tailwind CSS, and Paystack, with SEO
+            optimization to drive organic traffic and improve visibility.
           </>,
           <>
-            Built Glow, a beauty & wellness booking and e‑commerce platform with
-            Next.js, PostgreSQL, and Paystack, boosting client retention by 40%
-            and revenue by 20% through intuitive UX and streamlined checkout.
+            Improved user experience and streamlined booking and checkout flows,
+            increasing conversion rates by 20%.
           </>,
           <>
-            Developed Dekato Store, a modern e‑commerce solution using Next.js,
-            MongoDB, Paystack, AWS SES, and Vercel; implemented SEO
-            optimizations and responsive UI to drive traffic and conversions.
+            Implemented admin tools for managing services, inventory, and
+            customer engagement.
           </>,
           <>
-            Created Grind Protocol with Next.js and Firebase, enhancing
-            performance and increasing user engagement by 40%.
-          </>,
-          <>
-            Reduced delivery times by 20% via GitHub Actions CI/CD; cut AWS
-            costs by 15% through optimized SES and S3 usage.
+            Deployed on Vercel with mobile-first design, boosting client
+            retention by 40%.
           </>,
         ],
         images: [],
       },
       {
-        company: "Astren (Remote)",
-        timeframe: "2023 – 2024",
-        role: "Software Engineer",
+        company: "Dekato Store, Lagos",
+        timeframe: "Aug 2024 - Nov 2024",
+        role: "Full-Stack Developer (Remote)",
         achievements: [
           <>
-            Contributed to scalable back‑end and front‑end solutions, improving
-            system efficiency by 80% across services.
+            Built ecommerce platform with product variations, admin dashboard,
+            and SEO optimization using Next.js and MongoDB.
           </>,
           <>
-            Collaborated under NDA to deliver high‑impact features in a
-            fast‑paced environment, adhering to best practices in testing and
-            deployment.
+            Integrated Paystack for payments and AWS SES for email
+            notifications.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Acc-gen, Enugu",
+        timeframe: "Feb 2024 - Aug 2024",
+        role: "Full-Stack Developer",
+        achievements: [
+          <>
+            Co-developed a social media growth and SMS verification platform
+            using TypeScript, Next.js, and Supabase.
+          </>,
+          <>
+            Integrated a support system to streamline issue resolution and boost
+            user retention.
+          </>,
+          <>
+            Focused on responsive UI and performance, ensuring fast, smooth
+            cross-device experience.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Astren, Chandigarh, India",
+        timeframe: "Aug 2023 - Feb 2024",
+        role: "Software Engineer Intern (Remote)",
+        achievements: [
+          <>
+            Contributed to scalable backend/frontend solutions, improving
+            efficiency by 80%.
+          </>,
+          <>
+            Collaborated under NDA, maintaining confidentiality in a fast-paced
+            environment.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "ALX, Lagos",
+        timeframe: "Aug 2022 - Oct 2023",
+        role: "Software Engineer Program",
+        achievements: [
+          <>
+            Completed intensive software engineering program in full-stack
+            development, algorithms & system design.
+          </>,
+          <>
+            Hands-on experience with React, MongoDB, Node.js to deliver
+            full-stack software solutions.
+          </>,
+          <>Mentored 5 junior developers through ALX Slack community.</>,
+        ],
+        images: [],
+      },
+      {
+        company: "Freelance Projects, Nigeria",
+        timeframe: "2021 - 2023",
+        role: "Web Developer",
+        achievements: [
+          <>
+            Delivered 10+ websites using MERN stack and Tailwind CSS for various
+            industries.
+          </>,
+          <>
+            Collaborated with clients to meet design and functionality goals.
           </>,
         ],
         images: [],
@@ -152,56 +263,39 @@ const about = {
   },
   studies: {
     display: true,
-    title: "Education & Training",
+    title: "Education",
     institutions: [
       {
-        name: "Enugu State University of Science and Technology",
+        name: "Enugu State University of Science and Technology, Enugu Nigeria",
         description: (
-          <>BSc in Industrial Mathematics & Statistics (2016 – 2020)</>
+          <>
+            BSc in Industrial Mathematics & Statistics (Jan 2017 - July 2021).
+            Graduated with Second Class Upper (3.79 GPA). Final Year Project:
+            Mathematical Modeling for Malaria in Nigeria
+          </>
         ),
-      },
-      {
-        name: "ALX Software Engineering Program",
-        description: <>Full‑stack development intensive (2022 – 2023)</>,
       },
     ],
   },
-  technical: {
+  certifications: {
     display: true,
-    title: "Technical Skills",
-    skills: [
-      {
-        title: "Frontend Development",
-        description: (
-          <>
-            Expert in JavaScript, TypeScript, React.js, and Next.js for building
-            SSR/SSG web apps; skilled in Tailwind CSS and responsive design for
-            pixel‑perfect UIs.
-          </>
-        ),
-        images: [],
-      },
-      {
-        title: "Backend & Databases",
-        description: (
-          <>
-            Proficient with Node.js, Express.js, Python, RESTful APIs;
-            experienced in MongoDB, MySQL, Supabase, Firebase, Prisma, and
-            GraphQL for robust data layering.
-          </>
-        ),
-        images: [],
-      },
-      {
-        title: "Cloud & DevOps",
-        description: (
-          <>
-            Hands‑on with AWS (SES, S3), Vercel deployments, Git/GitHub CI/CD
-            pipelines, and Paystack integration for secure payments.
-          </>
-        ),
-        images: [],
-      },
+    title: "Certifications",
+    items: [
+      "LangChain for LLM Application Development — Completed Feb 2025",
+      "Preprocessing Unstructured Data for LLM Applications — Completed Feb 2025",
+      "Generative AI for Everyone — Completed Mar 2025",
+      "ChatGPT Prompt Engineering for Developers — Completed Mar 2025",
+      "ALX Software Engineering - Backend Specialization — Aug 2022 - Oct 2023",
+      "Node.js, Express, MongoDB Bootcamp - Udemy — Completed May 2023",
+      "The Complete JavaScript Course - Udemy — Completed Mar 2022",
+    ],
+  },
+  awards: {
+    display: true,
+    title: "Awards & Achievements",
+    items: [
+      "Selected for ALX Backend specialization among 1,000+ applicants",
+      "Increased engagement on Grind by 40% within 3 months",
     ],
   },
 };
