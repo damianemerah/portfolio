@@ -4,7 +4,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Web Developer",
+  role: "Full-Stack Engineer",
   avatar: "/images/projects/project-01/avatar-01.jpg",
   location: "Africa/Lagos",
   languages: ["English", "Igbo"],
@@ -15,9 +15,8 @@ const newsletter = {
   title: <>Subscribe to Damian&apos;s Dev & AI Newsletter</>,
   description: (
     <>
-      I share deep dives into Next.js performance tuning, SEO best practices,
-      practical React and Tailwind CSS tips, plus hands‑on AI and ML
-      integrations to elevate your web applications with intelligent features.
+      I share tips on Next.js performance, SEO, React, Tailwind, and practical
+      AI/ML to level up your web apps.
     </>
   ),
 };
@@ -56,10 +55,10 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Web developer</>,
+  headline: <>Full-Stack Engineer</>,
   subline: (
     <>
-      I&apos;m Damian, a web developer based in Lagos. I build intuitive
+      I&apos;m Damian, a Full-Stack Engineer based in Lagos. I build intuitive
       <br />
       user experiences by day — and by night, I bring personal ideas to life
       through code.
@@ -70,7 +69,7 @@ const home = {
 const about = {
   label: "About",
   title: "About Me",
-  description: `Resume of Damian Emerah, Web Developer based in Lagos, Nigeria`,
+  description: `Resume of Damian Emerah, Full-Stack Engineer based in Lagos, Nigeria`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,7 +93,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        <strong>DAMIAN EMERAH</strong> is a Web Developer based in Lagos,
+        <strong>DAMIAN EMERAH</strong> is a Full-Stack Engineer based in Lagos,
         Nigeria, specializing in building high-performance, SEO-optimized web
         applications. Experienced in both frontend and backend development,
         Damian delivers robust solutions for clients across Africa and beyond.
@@ -247,7 +246,7 @@ const about = {
       {
         company: "Freelance Projects, Nigeria",
         timeframe: "2021 - 2023",
-        role: "Web Developer",
+        role: "Full-Stack Engineer",
         achievements: [
           <>
             Delivered 10+ websites using MERN stack and Tailwind CSS for various
