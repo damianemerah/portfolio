@@ -135,7 +135,7 @@ const about = {
       },
       {
         title: "Others",
-        description: <>SEO, PWA, REST APIs</>,
+        description: <>SEO, PWA, REST API, GraphQL, AI/ML</>,
         images: [],
       },
       {
